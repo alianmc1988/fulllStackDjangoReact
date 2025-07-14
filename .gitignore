@@ -1,0 +1,6 @@
+/backend/*.sqlite3
+/backend/requirements.txt
+/backend/.env
+venv
+/frontend/.env
+/frontend/node_modules
