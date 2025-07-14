@@ -3,12 +3,15 @@ import React, { useState } from 'react'
 import { Form, Button, Alert } from 'react-bootstrap'
 import api from '../interceptors/api'
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants'
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
 	const [username, setUsername] = useState('')
 	const [password, setPassword] = useState('')
 	const [error, setError] = useState('')
 	const [loading, setLoading] = useState(false)
+
+	const navigate = useNavigate()
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -21,9 +24,10 @@ function Login() {
 				password,
 			})
 			if (res.status === 200) {
-				alert('¡Inicio de sesión exitoso!')
 				localStorage.setItem(ACCESS_TOKEN, res.data.access)
 				localStorage.setItem(REFRESH_TOKEN, res.data.refresh)
+				alert('¡Inicio de sesión exitoso!')
+				navigate('/')
 			} else {
 				alert('¡Inicio de sesión fallido!')
 			}

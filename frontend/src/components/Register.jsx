@@ -23,10 +23,6 @@ function Register() {
 			setLoading(false)
 			return
 		}
-
-		// Aquí iría tu lógica de registro (por ejemplo, una llamada a tu API de Django)
-		// Simulación de una llamada a API
-		// La llamada a la api no seria mejor en un useEffect?
 		try {
 			console.log('Intentando registrar usuario:', {
 				username,
@@ -34,32 +30,18 @@ function Register() {
 				password,
 			})
 
-			const res = axios.post('http://127.0.0.1:8000/api/register/', {
+			const res = axios.post('http://127.0.0.1:8000/api/user/register/', {
 				username,
 				email,
 				password,
 			})
-			// const response = await fetch('/api/register/', {
-			//   method: 'POST',
-			//   headers: {
-			//     'Content-Type': 'application/json',
-			//   },
-			//   body: JSON.stringify({ username, email, password }),
-			// });
 
-			// const data = await response.json();
-
-			if (res.status === 201) {
+			if (res.status === 200 || res.status === 201) {
+				alert('¡Registro exitoso! Ahora puedes iniciar sesión.')
+				setSuccess(true)
 				alert('¡Registro exitoso! Ahora puedes iniciar sesión.')
 			}
 
-			// if (!response.ok) {
-			//   // Asume que tu API de registro devuelve errores en 'detail' o en un objeto de errores
-			//   throw new Error(data.detail || JSON.stringify(data) || 'Error al registrar usuario');
-			// }
-
-			setSuccess(true)
-			alert('¡Registro exitoso! Ahora puedes iniciar sesión.')
 			setUsername('')
 			setEmail('')
 			setPassword('')
