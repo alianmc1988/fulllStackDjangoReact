@@ -1,5 +1,4 @@
 /backend/*.sqlite3
-/backend/requirements.txt
 /backend/.env
 venv
 /frontend/.env
